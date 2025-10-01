@@ -111,3 +111,8 @@ def update_state(request, id, status):
     lead.state = status
     lead.save()
     return redirect("/")
+
+def reset(request):
+    if request.GET.get("token") == "secret123":
+        return JsonResponse({"status": "success", "message": "Absences reset"})
+    return JsonResponse({"status": "error", "message": "Unauthorized"}, status=403)
