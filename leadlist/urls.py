@@ -22,6 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/leads', lead_capture),
     path('', show_leads),
-    path('/refresh', reset),
+    path('refresh/', reset),
     path('set/<int:id>/<str:status>', update_state),
 ]
