@@ -42,10 +42,9 @@ def lead_capture(request):
             subject = "🎉 Thanks for booking a demo with Mawjood"
             message = (
                 f"Hello {name},\n\n"
-                f"Thank you for booking a demo with Mawjood! 🚀\n\n"
-                f"Attached is your onboarding guide to help you get started.\n\n"
+                f"Thank you for ordering a Robomay 🚀\n\n"
                 f"Our team will reach out to you shortly.\n\n"
-                f"- Mawjood Team"
+                f"- Robomay Team"
             )
 
             # 3. Try attaching the PDF from URL
@@ -60,12 +59,6 @@ def lead_capture(request):
                     to=[email],
                 )
 
-                # Attach PDF in-memory
-                email_message.attach(
-                    "Mawjood-Onboarding-Guide.pdf",
-                    response.content,
-                    "application/pdf"
-                )
                 email_message.send(fail_silently=False)
 
             except Exception as e:
