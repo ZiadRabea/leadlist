@@ -37,9 +37,8 @@ def lead_capture(request):
             )
 
             # 2. PDF file URL (Google Drive direct download)
-            pdf_url = "https://drive.google.com/uc?export=download&id=1Qc6C9nMy5B4d5zLFt6bZn6ZNFuKgBZIi"
 
-            subject = "🎉 Thanks for booking a demo with Mawjood"
+            subject = "🎉 Thanks for booking a demo with Robomay"
             message = (
                 f"Hello {name},\n\n"
                 f"Thank you for ordering a Robomay 🚀\n\n"
@@ -48,32 +47,17 @@ def lead_capture(request):
             )
 
             # 3. Try attaching the PDF from URL
-            try:
-                response = requests.get(pdf_url)
-                response.raise_for_status()
 
-                email_message = EmailMessage(
-                    subject=subject,
-                    body=message,
-                    from_email="opindustries5@gmail.com",
-                    to=[email],
-                )
+            email_message = EmailMessage(
+                subject=subject,
+                body=message,
+                from_email="opindustries5@gmail.com",
+                to=[email],
+            )
 
-                email_message.send(fail_silently=False)
+            email_message.send(fail_silently=False)
 
-            except Exception as e:
-                # If PDF fetch fails, fallback to link only
-                fallback_message = (
-                    f"{message}\n\n"
-                    f"You can also view the onboarding guide here:\n{pdf_url}"
-                )
-                EmailMessage(
-                    subject=subject,
-                    body=fallback_message,
-                    from_email="opindustries5@gmail.com",
-                    to=[email],
-                ).send(fail_silently=False)
-
+    
             return JsonResponse({"status": "success"}, status=200)
 
         except Exception as e:
